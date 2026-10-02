@@ -4,16 +4,16 @@ import { site } from '../lib/site';
 
 <section id="inicio" class="relative overflow-hidden pt-14">
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="container-site relative py-[clamp(72px,12vw,144px)]">
+  <div class="container-site relative pt-[clamp(40px,5vw,64px)]">
     <p class="mono-label text-faint">{site.role}</p>
-    <h1 class="mt-6 max-w-[14ch] text-display text-balance">
+    <h1 class="mt-5 max-w-[14ch] text-display text-balance">
       Construyo software que resuelve <span class="text-accent">problemas reales.</span>
     </h1>
-    <p class="mt-8 max-w-[56ch] text-lg text-muted">
+    <p class="mt-6 max-w-[56ch] text-lg text-muted">
       Estudio Ingeniería de Sistemas en la {site.university}. Lo que construyo no se queda en el repositorio: lo
       despliego y lo pongo en manos de quien lo necesita.
     </p>
-    <div class="mt-10 flex flex-wrap gap-3">
+    <div class="mt-8 flex flex-wrap gap-3">
       <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
       <a href={site.github} target="_blank" rel="noopener" class="btn btn-ghost">
         GitHub <span aria-hidden="true">↗</span>
@@ -21,7 +21,7 @@ import { site } from '../lib/site';
     </div>
 
     <div
-      class="terminal mt-14 font-mono text-sm leading-7"
+      class="terminal mt-10 font-mono text-sm leading-7"
       role="img"
       aria-label={`Terminal: ${site.user}, ${site.whoami.join(', ')}`}
     >
