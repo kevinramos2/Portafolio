@@ -15,6 +15,8 @@ highlights:
   - En uso por el equipo de selección
   - La decisión siempre es de una persona
   - Sin datos reales en el repo (Ley 1581)
+cover: ../../assets/projects/panel-convocatorias.png
+coverAlt: Panel de revisión en modo demo, con la lista de aspirantes de prueba y la guía de los siete pasos.
 flow:
   - Expediente PDF
   - Lectura y clasificación con Claude

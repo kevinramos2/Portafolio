@@ -4,7 +4,7 @@ summary: Cinco prácticas de una misma línea de trabajo. Montecarlo, optimizaci
 repo: https://github.com/kevinramos2/Juego-Risk-Simulador-de-Montecarlo
 repoName: Juego-Risk-Simulador-de-Montecarlo
 year: 2024
-order: 5
+order: 6
 span: 2x1
 status: practica
 stack: [Python, Montecarlo, Estadística]

@@ -7,7 +7,14 @@ demo: https://f-brica-de-velas-manare-web.vercel.app/
 year: 2026
 featured: true
 order: 3
-span: 2x1
+span: 2x2
 status: activo
 stack: [Next.js, React, TypeScript, Tailwind CSS, shadcn/ui]
+highlights:
+  - Catálogo de 115 referencias reales
+  - Pedido que se envía por WhatsApp
+  - Precios importados desde Siigo
+  - Sistema de diseño propio, «Cera y Llama»
+cover: ../../assets/projects/velas-manare-web.png
+coverAlt: Página de inicio del sitio de la Fábrica de Velas Manare, con el titular y tres velas ilustradas.
 ---

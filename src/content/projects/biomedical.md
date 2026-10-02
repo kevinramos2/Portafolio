@@ -4,8 +4,8 @@ summary: Clasificación multietiqueta de 3.565 artículos médicos por dominio a
 repo: https://github.com/kevinramos2/Biomedical-Classification-Challenge
 repoName: Biomedical-Classification-Challenge
 year: 2025
-order: 6
-span: 2x1
+order: 5
+span: 1x1
 status: activo
 stack: [Python, scikit-learn, Jupyter, NLP]
 highlights:
