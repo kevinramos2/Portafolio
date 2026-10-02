@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import { formatMonth, getRepos, lastPush } from '../lib/github';
+import { site } from '../lib/site';
+
+const projects = (await getCollection('projects')).map((e) => e.data).sort((a, b) => a.order - b.order);
+const repos = await getRepos(site.user);
+const withDemo = projects.filter((p) => p.demo).length;
+const among = repos.length > 0 ? ` entre ${repos.length} repositorios públicos` : '';
+---
+
+<section id="proyectos" class="section">
+  <div class="container-site">
+    <p class="mono-label text-accent">01 — Proyectos</p>
+    <div class="mt-3 flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
+      <h2 class="text-h1">Trabajo seleccionado</h2>
+      <p class="max-w-[44ch] text-sm text-muted">
+        {projects.length} proyectos elegidos{among}; {withDemo} se pueden probar ahora mismo.
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        projects.map((p) => {
+          const pushed = lastPush(repos, p.relatedRepos?.map((r) => r.name) ?? [p.repoName]);
+          return <ProjectCard project={p} updated={pushed && formatMonth(pushed)} />;
+        })
+      }
+    </div>
+  </div>
+</section>

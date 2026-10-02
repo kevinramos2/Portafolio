@@ -1,0 +1,31 @@
+---
+import { timeline } from '../lib/site';
+---
+
+<section id="trayectoria" class="section">
+  <div class="container-site">
+    <p class="mono-label text-accent">03 — Trayectoria</p>
+    <h2 class="mt-3 text-h1">Del presente hacia atrás</h2>
+
+    <ol class="mt-10 max-w-3xl border-l border-border">
+      {
+        timeline.map((item, i) => (
+          <li class="relative grid gap-1 pb-8 pl-6 last:pb-0 sm:grid-cols-[8rem_1fr] sm:gap-6" data-reveal>
+            <span
+              class:list={[
+                'absolute top-2 -left-[4.5px] size-2 rounded-full',
+                i === 0 ? 'bg-accent' : 'bg-border-strong',
+              ]}
+              aria-hidden="true"
+            />
+            <span class="mono-label pt-1 text-faint">{item.period}</span>
+            <div>
+              <h3 class="font-semibold text-text">{item.title}</h3>
+              <p class="mt-1 text-sm text-muted">{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

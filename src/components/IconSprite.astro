@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import { iconId, iconPath } from '../lib/icons';
+import { stackGroups } from '../lib/site';
+
+// Solo entran al sprite los iconos que la página usa de verdad.
+const projects = await getCollection('projects');
+const names = new Set<string>(['github']);
+for (const { data } of projects) data.stack.forEach((s) => names.add(s));
+for (const group of stackGroups) group.items.forEach((s) => names.add(s));
+
+const symbols = new Map<string, string>();
+for (const name of names) {
+  const path = iconPath(name);
+  if (path) symbols.set(iconId(name), path);
+}
+---
+
+<svg class="hidden" aria-hidden="true">
+  {
+    [...symbols].map(([id, path]) => (
+      <symbol id={id} viewBox="0 0 24 24">
+        <path d={path} />
+      </symbol>
+    ))
+  }
+</svg>

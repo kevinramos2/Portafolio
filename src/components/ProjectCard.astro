@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+import { iconPath } from '../lib/icons';
+import { site } from '../lib/site';
+
+interface Props {
+  project: CollectionEntry<'projects'>['data'];
+  updated?: string;
+}
+
+const { project: p, updated } = Astro.props;
+const large = p.span === '2x2';
+const years = p.yearEnd ? `${p.year}–${p.yearEnd}` : `${p.year}`;
+const langIcon = p.stack.find((s) => iconPath(s));
+const shown = p.stack.slice(0, p.span === '1x1' ? 4 : 6);
+const extra = p.stack.length - shown.length;
+const flow = p.flow ?? [];
+const wide = p.span !== '1x1';
+const btn = wide ? 'btn' : 'btn px-3';
+---
+
+<article
+  data-reveal
+  class:list={[
+    'card card-interactive flex flex-col overflow-hidden',
+    large && 'sm:col-span-2 lg:row-span-2',
+    p.span === '2x1' && 'sm:col-span-2',
+  ]}
+>
+  {
+    large && p.cover && (
+      <Image
+        src={p.cover}
+        alt={p.coverAlt ?? ''}
+        widths={[400, 640, 960, 1280]}
+        sizes="(min-width: 1024px) 552px, (min-width: 640px) 90vw, 100vw"
+        class="aspect-[16/9] w-full border-b border-border object-cover object-top"
+      />
+    )
+  }
+  {
+    large && !p.cover && flow.length > 0 && (
+      <ol
+        class="flex flex-col justify-center gap-2 border-b border-border bg-bg-elevated p-6 lg:aspect-[16/9]"
+        aria-label="Flujo de la herramienta"
+      >
+        {flow.map((step, i) => (
+          <li class="flex items-center gap-3 font-mono text-[0.8125rem] text-muted">
+            <span
+              class:list={[
+                'grid size-6 shrink-0 place-items-center rounded-full border text-[0.6875rem] font-bold',
+                i === flow.length - 2 ? 'border-accent text-accent' : 'border-border-strong text-faint',
+              ]}
+            >
+              {i + 1}
+            </span>
+            {step}
+          </li>
+        ))}
+      </ol>
+    )
+  }
+
+  <div class:list={['flex flex-1 flex-col', large ? 'p-6' : 'p-5']}>
+    <div class="mono-label flex items-center justify-between gap-3 text-faint">
+      <span class="flex items-center gap-2">
+        {langIcon && <Icon name={langIcon} />}
+        {years}
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class:list={['size-1.5 rounded-full', p.demo ? 'bg-accent' : 'bg-border-strong']} aria-hidden="true" />
+        {p.demo ? 'Demo en vivo' : 'Solo código'}
+      </span>
+    </div>
+
+    <h3 class:list={['mt-4 font-semibold tracking-tight text-text', large ? 'text-2xl' : 'text-lg leading-snug']}>
+      {p.title}
+    </h3>
+    <p class="mt-2 text-sm text-muted">{p.summary}</p>
+
+    {
+      wide && p.highlights && (
+        <ul class="mt-4 grid gap-x-4 gap-y-1.5 text-sm text-text sm:grid-cols-2">
+          {p.highlights.map((h) => (
+            <li class="flex gap-2">
+              <span class="text-accent" aria-hidden="true">
+                ✓
+              </span>
+              {h}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      p.relatedRepos && (
+        <ul class="mt-4 flex flex-wrap gap-2" aria-label="Repositorios">
+          {p.relatedRepos.map((r) => (
+            <li>
+              <a
+                href={`${site.github}/${r.name}`}
+                target="_blank"
+                rel="noopener"
+                class="badge min-h-11 px-3 text-text transition-colors duration-150 hover:border-accent hover:text-accent"
+              >
+                {r.label} <span aria-hidden="true">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <ul class="mt-4 flex flex-wrap gap-1.5" aria-label="Tecnologías">
+      {
+        shown.map((s) => (
+          <li class="badge">
+            <Icon name={s} class="size-3" />
+            {s}
+          </li>
+        ))
+      }
+      {extra > 0 && <li class="badge">+{extra}</li>}
+    </ul>
+
+    <div class="mt-auto flex flex-wrap items-center gap-2 pt-5">
+      {
+        p.demo && (
+          <a
+            href={p.demo}
+            target="_blank"
+            rel="noopener"
+            class:list={[btn, 'btn-primary']}
+            aria-label={`Visitar la demo de ${p.title}`}
+          >
+            {wide ? 'Visitar demo' : 'Ver demo'} <span aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+      {
+        !p.relatedRepos && (
+          <a
+            href={p.repo}
+            target="_blank"
+            rel="noopener"
+            class:list={[btn, 'btn-ghost']}
+            aria-label={`Código de ${p.title} en GitHub`}
+          >
+            Código <span aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+      {wide && updated && <span class="ml-auto font-mono text-xs text-faint">act. {updated}</span>}
+    </div>
+    {p.demoNote && <p class="mt-2 text-xs text-faint">{p.demoNote}.</p>}
+  </div>
+</article>

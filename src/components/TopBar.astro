@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { nav, site } from '../lib/site';
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-sm">
+  <div class="container-site flex h-14 items-center justify-between gap-4">
+    <a href="#inicio" class="flex h-11 items-center gap-2 font-mono text-sm font-bold text-text">
+      <span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>
+      {site.user}
+    </a>
+    <span class="mono-label hidden text-faint md:block">{site.locationShort}</span>
+    <nav aria-label="Secciones" class="flex items-center gap-1">
+      <ul class="hidden items-center sm:flex">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="rounded-md px-3 py-2 text-sm text-muted transition-colors duration-150 hover:text-text"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href={site.github}
+        target="_blank"
+        rel="noopener"
+        aria-label={`Perfil de GitHub de ${site.name}`}
+        class="grid size-11 place-items-center rounded-md text-muted transition-colors duration-150 hover:text-accent"
+      >
+        <Icon name="github" class="size-5" />
+      </a>
+    </nav>
+  </div>
+</header>

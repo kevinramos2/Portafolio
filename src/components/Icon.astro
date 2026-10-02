@@ -1,0 +1,19 @@
+---
+import { iconId, iconPath } from '../lib/icons';
+
+interface Props {
+  name: string;
+  class?: string;
+}
+
+// El path vive una sola vez en IconSprite.astro; aquí solo se referencia.
+const { name, class: className = 'size-3.5' } = Astro.props;
+---
+
+{
+  iconPath(name) && (
+    <svg class:list={['shrink-0 fill-current', className]} aria-hidden="true">
+      <use href={`#${iconId(name)}`} />
+    </svg>
+  )
+}

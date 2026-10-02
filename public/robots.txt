@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kevinramos2.github.io/Portafolio/sitemap-index.xml

@@ -1,0 +1,78 @@
+---
+import { site } from '../lib/site';
+---
+
+<section id="inicio" class="relative overflow-hidden pt-14">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container-site relative py-[clamp(72px,12vw,144px)]">
+    <p class="mono-label text-faint">{site.role}</p>
+    <h1 class="mt-6 max-w-[14ch] text-display text-balance">
+      Construyo software que resuelve <span class="text-accent">problemas reales.</span>
+    </h1>
+    <p class="mt-8 max-w-[56ch] text-lg text-muted">
+      Estudio Ingeniería de Sistemas en la {site.university}. Lo que construyo no se queda en el repositorio: lo
+      despliego y lo pongo en manos de quien lo necesita.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+      <a href={site.github} target="_blank" rel="noopener" class="btn btn-ghost">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div
+      class="terminal mt-14 font-mono text-sm leading-7"
+      role="img"
+      aria-label={`Terminal: ${site.user}, ${site.whoami.join(', ')}`}
+    >
+      <p class="line" style="--d: 0.3s"><span class="prompt">$</span> whoami</p>
+      <p class="line text-muted" style="--d: 0.9s">{site.user}</p>
+      <p class="line" style="--d: 1.6s"><span class="prompt">$</span> ls stack/</p>
+      <p class="line text-muted" style="--d: 2.2s">{site.whoami.join('  ')}</p>
+      <p class="line" style="--d: 2.2s"><span class="cursor"></span></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-glow {
+    position: absolute;
+    top: -120px;
+    left: 50%;
+    width: 900px;
+    height: 600px;
+    translate: -50% 0;
+    background: radial-gradient(closest-side, var(--color-accent-glow), transparent);
+    pointer-events: none;
+  }
+
+  .terminal .line {
+    white-space: pre;
+    animation: appear 1ms linear var(--d) both;
+  }
+
+  .prompt {
+    color: var(--color-terminal);
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    background: var(--color-terminal);
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
