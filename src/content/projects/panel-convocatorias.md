@@ -16,7 +16,7 @@ highlights:
   - La decisión siempre es de una persona
   - Sin datos reales en el repo (Ley 1581)
 cover: ../../assets/projects/panel-convocatorias.png
-coverAlt: Panel de revisión en modo demo, con la lista de aspirantes de prueba y la guía de los siete pasos.
+coverAlt: Panel de revisión en modo demo. Lista de aspirantes de prueba, visor del documento y el primer paso de los siete, con la sugerencia del sistema y la decisión de quien revisa.
 flow:
   - Expediente PDF
   - Lectura y clasificación con Claude
