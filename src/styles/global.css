@@ -6,22 +6,24 @@
 }
 
 @theme {
-  --color-bg: #080b09;
-  --color-bg-elevated: #0d1210;
-  --color-surface: #111714;
-  --color-surface-hover: #151e1a;
-  --color-border: #1e2a24;
-  --color-border-strong: #2c3d35;
-  --color-text: #e4ebe7;
-  --color-muted: #8fa396;
-  /* El plan pedía #5D6F65, que no llega a AA sobre --surface; este sí (5.3:1). */
-  --color-faint: #7c8f84;
-  --color-accent: #4ade80;
-  --color-accent-hover: #22c55e;
-  --color-accent-dim: #14532d;
-  --color-accent-glow: rgb(74 222 128 / 0.12);
+  --color-bg: #080a0f;
+  --color-bg-elevated: #0c1017;
+  --color-surface: #10151d;
+  --color-surface-hover: #151c27;
+  --color-border: #1e2735;
+  --color-border-strong: #2d3b50;
+  --color-text: #e4e9f0;
+  --color-muted: #93a1b5;
+  /* Llega a AA sobre --surface (5.2:1). */
+  --color-faint: #7b8aa0;
+  --color-accent: #60a5fa;
+  --color-accent-hover: #3b82f6;
+  --color-accent-dim: #1e3a8a;
+  --color-accent-glow: rgb(96 165 250 / 0.14);
   /* Solo decorativo: cursor y prompt. Nunca para texto. */
-  --color-terminal: #00ff41;
+  /* Texto sobre el acento (botón primario). */
+  --color-on-accent: #06142b;
+  --color-terminal: #3d9bff;
 
   --radius-card: 16px;
   --radius-control: 8px;
@@ -137,7 +139,7 @@
 
   .btn-primary {
     background: var(--color-accent);
-    color: #052e16;
+    color: var(--color-on-accent);
   }
 
   .btn-primary:hover {
@@ -175,8 +177,8 @@
     z-index: -1;
     pointer-events: none;
     background-image:
-      linear-gradient(to right, rgb(30 42 36 / 0.4) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(30 42 36 / 0.4) 1px, transparent 1px);
+      linear-gradient(to right, rgb(30 39 53 / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(30 39 53 / 0.4) 1px, transparent 1px);
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 100%);
   }
