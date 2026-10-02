@@ -29,12 +29,3 @@ Las URLs de demo viven en el contenido, no en el campo `homepage` de GitHub.
 
 Todo está en `src/lib/site.ts`: nombre, enlaces, stack y trayectoria.
 
-## Despliegue
-
-Cada push a `main` publica con `.github/workflows/deploy.yml`. Una sola vez, en GitHub:
-**Settings → Pages → Source → GitHub Actions**.
-
-El sitio se sirve en `/Portafolio/` porque así se llama el repositorio. Si se renombra a
-`kevinramos2.github.io`, cambiar `BASE` a `'/'` en `astro.config.mjs` y la URL del sitemap en `public/robots.txt`.
-
-`npm run og` regenera la imagen de Open Graph (`public/og.png`).
