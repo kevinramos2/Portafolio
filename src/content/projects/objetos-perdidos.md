@@ -9,7 +9,6 @@ year: 2025
 yearEnd: 2026
 featured: true
 order: 2
-span: 2x2
 status: produccion
 stack: [Python, Django, PostgreSQL, Neon, Google OAuth, Render]
 highlights:

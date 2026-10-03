@@ -7,7 +7,6 @@ demo: https://automatizaci-n-convocatorias-to-un.vercel.app/
 year: 2026
 featured: true
 order: 1
-span: 2x2
 status: produccion
 stack: [Python, FastAPI, React, TypeScript, Tailwind CSS, API de Claude]
 highlights:

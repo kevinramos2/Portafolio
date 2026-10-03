@@ -11,13 +11,13 @@ interface Props {
 }
 
 const { project: p, updated } = Astro.props;
-const large = p.span === '2x2';
+const large = p.featured;
 const years = p.yearEnd ? `${p.year}–${p.yearEnd}` : `${p.year}`;
 const langIcon = p.stack.find((s) => iconPath(s));
-const shown = p.stack.slice(0, p.span === '1x1' ? 4 : 6);
+const shown = p.stack.slice(0, large || p.span === '2x1' ? 6 : 4);
 const extra = p.stack.length - shown.length;
 const flow = p.flow ?? [];
-const wide = p.span !== '1x1';
+const wide = large || p.span === '2x1';
 const btn = wide ? 'btn' : 'btn px-3';
 ---
 
@@ -25,8 +25,8 @@ const btn = wide ? 'btn' : 'btn px-3';
   data-reveal
   class:list={[
     'card card-interactive flex flex-col overflow-hidden',
-    large && 'sm:col-span-2 lg:row-span-2',
-    p.span === '2x1' && 'sm:col-span-2',
+    large && 'sm:first:col-span-2 lg:first:col-span-1',
+    !large && p.span === '2x1' && 'sm:col-span-2',
   ]}
 >
   {
@@ -35,7 +35,7 @@ const btn = wide ? 'btn' : 'btn px-3';
         src={p.cover}
         alt={p.coverAlt ?? ''}
         widths={[400, 640, 960, 1280]}
-        sizes="(min-width: 1024px) 552px, (min-width: 640px) 90vw, 100vw"
+        sizes="(min-width: 1024px) 380px, (min-width: 640px) 90vw, 100vw"
         class="aspect-[16/9] w-full border-b border-border object-cover object-top"
       />
     )
@@ -82,7 +82,7 @@ const btn = wide ? 'btn' : 'btn px-3';
 
     {
       wide && p.highlights && (
-        <ul class="mt-4 grid gap-x-4 gap-y-1.5 text-sm text-text sm:grid-cols-2">
+        <ul class:list={['mt-4 grid gap-x-4 gap-y-1.5 text-sm text-text', !large && 'sm:grid-cols-2']}>
           {p.highlights.map((h) => (
             <li class="flex gap-2">
               <span class="text-accent" aria-hidden="true">

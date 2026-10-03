@@ -20,6 +20,7 @@ export const site = {
 
 export const nav = [
   { href: '#proyectos', label: 'Proyectos' },
+  { href: '#academico', label: 'Académico' },
   { href: '#stack', label: 'Stack' },
   { href: '#trayectoria', label: 'Trayectoria' },
   { href: '#contacto', label: 'Contacto' },

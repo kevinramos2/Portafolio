@@ -7,7 +7,6 @@ demo: https://f-brica-de-velas-manare-web.vercel.app/
 year: 2026
 featured: true
 order: 3
-span: 2x2
 status: activo
 stack: [Next.js, React, TypeScript, Tailwind CSS, shadcn/ui]
 highlights:
