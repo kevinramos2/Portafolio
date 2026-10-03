@@ -126,35 +126,37 @@ const btn = wide ? 'btn' : 'btn px-3';
       {extra > 0 && <li class="badge">+{extra}</li>}
     </ul>
 
-    <div class="mt-auto flex flex-wrap items-center gap-2 pt-5">
-      {
-        p.demo && (
-          <a
-            href={p.demo}
-            target="_blank"
-            rel="noopener"
-            class:list={[btn, 'btn-primary']}
-            aria-label={`Visitar la demo de ${p.title}`}
-          >
-            {wide ? 'Visitar demo' : 'Ver demo'} <span aria-hidden="true">↗</span>
-          </a>
-        )
-      }
-      {
-        !p.relatedRepos && (
-          <a
-            href={p.repo}
-            target="_blank"
-            rel="noopener"
-            class:list={[btn, 'btn-ghost']}
-            aria-label={`Código de ${p.title} en GitHub`}
-          >
-            Código <span aria-hidden="true">↗</span>
-          </a>
-        )
-      }
-      {wide && updated && <span class="ml-auto font-mono text-xs text-faint">act. {updated}</span>}
+    <div class="mt-auto pt-5">
+      {p.demoNote && <p class="mb-3 text-xs text-faint">{p.demoNote}.</p>}
+      <div class="flex flex-wrap items-center gap-2">
+        {
+          p.demo && (
+            <a
+              href={p.demo}
+              target="_blank"
+              rel="noopener"
+              class:list={[btn, 'btn-primary']}
+              aria-label={`Visitar la demo de ${p.title}`}
+            >
+              {wide ? 'Visitar demo' : 'Ver demo'} <span aria-hidden="true">↗</span>
+            </a>
+          )
+        }
+        {
+          !p.relatedRepos && (
+            <a
+              href={p.repo}
+              target="_blank"
+              rel="noopener"
+              class:list={[btn, 'btn-ghost']}
+              aria-label={`Código de ${p.title} en GitHub`}
+            >
+              Código <span aria-hidden="true">↗</span>
+            </a>
+          )
+        }
+        {wide && updated && <span class="ml-auto font-mono text-xs text-faint">act. {updated}</span>}
+      </div>
     </div>
-    {p.demoNote && <p class="mt-2 text-xs text-faint">{p.demoNote}.</p>}
   </div>
 </article>
