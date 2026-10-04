@@ -14,5 +14,5 @@ highlights:
   - Dashboard, reportes y márgenes por referencia
   - Pensado para tablet, con roles de administrador y cajero
 cover: ../../assets/projects/pos-velas-manare.png
-coverAlt: Pantalla de venta del punto de venta de Velas Manare, con la grilla de productos por categoría y el carrito con cuatro artículos y su total.
+coverAlt: Dashboard del punto de venta de Velas Manare, con las ventas del día, el saldo por cobrar, el stock bajo, la gráfica de los últimos siete días y las últimas ventas.
 ---
