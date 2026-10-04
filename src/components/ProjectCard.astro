@@ -10,9 +10,12 @@ interface Props {
   updated?: string;
   /** La primera tarjeta destacada ocupa dos columnas (solo cuando hay un número impar). */
   wideFirst?: boolean;
+  /** Columnas de la rejilla de destacados en escritorio, para pedir la imagen al tamaño real. */
+  cols?: 2 | 3;
+  first?: boolean;
 }
 
-const { project: p, updated, wideFirst = true } = Astro.props;
+const { project: p, updated, wideFirst = true, cols = 3, first = false } = Astro.props;
 const large = p.featured;
 const years = p.yearEnd ? `${p.year}–${p.yearEnd}` : `${p.year}`;
 const langIcon = p.stack.find((s) => iconPath(s));
@@ -21,6 +24,10 @@ const extra = p.stack.length - shown.length;
 const flow = p.flow ?? [];
 const wide = large || p.span === '2x1';
 const btn = wide ? 'btn' : 'btn px-3';
+// Ancho real de la portada: contenedor de 1120 px útiles, separación de 16 px entre columnas.
+const desktop = cols === 3 ? '362px' : '552px';
+const tablet = wideFirst && first ? '100vw' : '50vw';
+const coverSizes = `(min-width: 1200px) ${desktop}, (min-width: 1024px) ${cols === 3 ? '33vw' : '50vw'}, (min-width: 640px) ${tablet}, 100vw`;
 ---
 
 <article
@@ -36,8 +43,9 @@ const btn = wide ? 'btn' : 'btn px-3';
       <Image
         src={p.cover}
         alt={p.coverAlt ?? ''}
-        widths={[400, 640, 960, 1280]}
-        sizes="(min-width: 1024px) 380px, (min-width: 640px) 90vw, 100vw"
+        widths={[480, 720, 960, 1200, 1440]}
+        sizes={coverSizes}
+        quality={90}
         class="aspect-[16/9] w-full border-b border-border object-cover object-top"
       />
     )

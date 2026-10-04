@@ -23,7 +23,11 @@ const updated = (p: (typeof all)[number]) => {
     <h2 class="mt-3 text-h1">Proyectos en vivo</h2>
 
     <div class:list={['mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2', liveCols]}>
-      {live.map((p) => <ProjectCard project={p} updated={updated(p)} wideFirst={wideFirst} />)}
+      {
+        live.map((p, i) => (
+          <ProjectCard project={p} updated={updated(p)} wideFirst={wideFirst} cols={liveCols === 'lg:grid-cols-3' ? 3 : 2} first={i === 0} />
+        ))
+      }
     </div>
   </div>
 </section>
