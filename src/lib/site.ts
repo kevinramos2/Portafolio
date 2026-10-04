@@ -27,7 +27,7 @@ export const nav = [
 ] as const;
 
 export const stackGroups = [
-  { title: 'Backend', items: ['Python', 'Django', 'FastAPI', 'PostgreSQL'] },
+  { title: 'Backend', items: ['Python', 'Django', 'FastAPI', 'PostgreSQL', 'Prisma'] },
   { title: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vite', 'HTML', 'CSS', 'JavaScript'] },
   { title: 'Infraestructura', items: ['Render', 'Vercel', 'Neon', 'GitHub Actions', 'Replit'] },
   {
@@ -42,6 +42,11 @@ export const timeline = [
     period: '2026',
     title: 'Panel de revisión de aspirantes',
     text: 'En uso por el equipo de selección de la UNAL para las convocatorias de Trabajador Oficial.',
+  },
+  {
+    period: '2026',
+    title: 'Punto de venta de Velas Manare',
+    text: 'POS con inventario, créditos y facturación electrónica DIAN a través de Siigo, desplegado en Vercel con PostgreSQL en Neon.',
   },
   {
     period: '2026',

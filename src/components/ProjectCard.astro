@@ -8,9 +8,11 @@ import { site } from '../lib/site';
 interface Props {
   project: CollectionEntry<'projects'>['data'];
   updated?: string;
+  /** La primera tarjeta destacada ocupa dos columnas (solo cuando hay un número impar). */
+  wideFirst?: boolean;
 }
 
-const { project: p, updated } = Astro.props;
+const { project: p, updated, wideFirst = true } = Astro.props;
 const large = p.featured;
 const years = p.yearEnd ? `${p.year}–${p.yearEnd}` : `${p.year}`;
 const langIcon = p.stack.find((s) => iconPath(s));
@@ -25,7 +27,7 @@ const btn = wide ? 'btn' : 'btn px-3';
   data-reveal
   class:list={[
     'card card-interactive flex flex-col overflow-hidden',
-    large && 'sm:first:col-span-2 lg:first:col-span-1',
+    large && wideFirst && 'sm:first:col-span-2 lg:first:col-span-1',
     !large && p.span === '2x1' && 'sm:col-span-2',
   ]}
 >
@@ -143,7 +145,7 @@ const btn = wide ? 'btn' : 'btn px-3';
           )
         }
         {
-          !p.relatedRepos && (
+          !p.relatedRepos && p.repo && (
             <a
               href={p.repo}
               target="_blank"

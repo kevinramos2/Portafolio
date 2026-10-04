@@ -10,8 +10,9 @@ const projects = defineCollection({
     z.object({
       title: z.string(),
       summary: z.string().max(200),
-      repo: z.url(),
-      repoName: z.string(),
+      // Opcionales: un proyecto con repositorio privado no muestra el botón «Código».
+      repo: z.url().optional(),
+      repoName: z.string().optional(),
       demo: z.url().optional(),
       demoNote: z.string().optional(),
       year: z.number().int().min(2023).max(2030),
